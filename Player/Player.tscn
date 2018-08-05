@@ -99,7 +99,7 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Collision", "Transform" ]
 __meta__ = {
 "_edit_group_": true
 }
@@ -117,5 +117,7 @@ position = Vector2( 0, 9.04535 )
 scale = Vector2( 0.7, 0.684407 )
 shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
+
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 
 
