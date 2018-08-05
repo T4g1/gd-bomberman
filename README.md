@@ -4,7 +4,7 @@ Simple Bomberman implementation using Godot game engine
 
 ## Feature
 
-* None yet
+* Player animations
 
 ## Planned features
 
