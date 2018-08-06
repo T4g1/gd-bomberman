@@ -1,16 +1,16 @@
 [gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Player/left/0.png" type="Texture" id=2]
-[ext_resource path="res://Player/left/1.png" type="Texture" id=3]
-[ext_resource path="res://Player/left/2.png" type="Texture" id=4]
-[ext_resource path="res://Player/left/3.png" type="Texture" id=5]
-[ext_resource path="res://Player/left/4.png" type="Texture" id=6]
-[ext_resource path="res://Player/right/0.png" type="Texture" id=7]
-[ext_resource path="res://Player/right/1.png" type="Texture" id=8]
-[ext_resource path="res://Player/right/2.png" type="Texture" id=9]
-[ext_resource path="res://Player/right/3.png" type="Texture" id=10]
-[ext_resource path="res://Player/right/4.png" type="Texture" id=11]
+[ext_resource path="res://Player/right/0.png" type="Texture" id=2]
+[ext_resource path="res://Player/right/1.png" type="Texture" id=3]
+[ext_resource path="res://Player/right/2.png" type="Texture" id=4]
+[ext_resource path="res://Player/right/3.png" type="Texture" id=5]
+[ext_resource path="res://Player/right/4.png" type="Texture" id=6]
+[ext_resource path="res://Player/left/0.png" type="Texture" id=7]
+[ext_resource path="res://Player/left/1.png" type="Texture" id=8]
+[ext_resource path="res://Player/left/2.png" type="Texture" id=9]
+[ext_resource path="res://Player/left/3.png" type="Texture" id=10]
+[ext_resource path="res://Player/left/4.png" type="Texture" id=11]
 [ext_resource path="res://Player/up/0.png" type="Texture" id=12]
 [ext_resource path="res://Player/up/1.png" type="Texture" id=13]
 [ext_resource path="res://Player/up/3.png" type="Texture" id=14]
@@ -26,21 +26,21 @@
 [ext_resource path="res://Player/die/4.png" type="Texture" id=24]
 [ext_resource path="res://Player/die/5.png" type="Texture" id=25]
 [ext_resource path="res://Player/die/6.png" type="Texture" id=26]
-[ext_resource path="res://Player/down/2.png" type="Texture" id=27]
-[ext_resource path="res://Player/win/0.png" type="Texture" id=28]
-[ext_resource path="res://Player/up/2.png" type="Texture" id=29]
+[ext_resource path="res://Player/win/0.png" type="Texture" id=27]
+[ext_resource path="res://Player/up/2.png" type="Texture" id=28]
+[ext_resource path="res://Player/down/2.png" type="Texture" id=29]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
-"name": "left",
+"name": "right",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": true,
-"name": "right",
+"name": "left",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
@@ -60,27 +60,27 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 27 ) ],
 "loop": true,
-"name": "iddle_down",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "iddle_left",
+"name": "win",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
-"name": "iddle_right",
+"name": "idle_left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 28 ) ],
 "loop": true,
-"name": "win",
+"name": "idle_up",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 29 ) ],
 "loop": true,
-"name": "iddle_up",
+"name": "idle_down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "idle_right",
 "speed": 5.0
 } ]
 
@@ -89,7 +89,7 @@ animations = [ {
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Player" type="Area2D" index="0"]
+[node name="Player" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -108,7 +108,7 @@ speed = 200
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
 frames = SubResource( 1 )
-animation = "iddle_down"
+animation = "idle_down"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
@@ -118,6 +118,6 @@ scale = Vector2( 0.7, 0.684407 )
 shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
-[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 
 

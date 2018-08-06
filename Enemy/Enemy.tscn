@@ -1,0 +1,107 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Enemy/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Enemy/right/0.png" type="Texture" id=2]
+[ext_resource path="res://Enemy/right/1.png" type="Texture" id=3]
+[ext_resource path="res://Enemy/right/2.png" type="Texture" id=4]
+[ext_resource path="res://Enemy/left/0.png" type="Texture" id=5]
+[ext_resource path="res://Enemy/left/1.png" type="Texture" id=6]
+[ext_resource path="res://Enemy/left/2.png" type="Texture" id=7]
+[ext_resource path="res://Enemy/up/0.png" type="Texture" id=8]
+[ext_resource path="res://Enemy/up/1.png" type="Texture" id=9]
+[ext_resource path="res://Enemy/up/2.png" type="Texture" id=10]
+[ext_resource path="res://Enemy/down/0.png" type="Texture" id=11]
+[ext_resource path="res://Enemy/down/1.png" type="Texture" id=12]
+[ext_resource path="res://Enemy/down/2.png" type="Texture" id=13]
+[ext_resource path="res://Enemy/die/0.png" type="Texture" id=14]
+[ext_resource path="res://Enemy/die/3.png" type="Texture" id=15]
+[ext_resource path="res://Enemy/die/1.png" type="Texture" id=16]
+[ext_resource path="res://Enemy/die/4.png" type="Texture" id=17]
+[ext_resource path="res://Enemy/die/2.png" type="Texture" id=18]
+[ext_resource path="res://Enemy/die/5.png" type="Texture" id=19]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "up",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"loop": false,
+"name": "die",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "idle_left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "idle_up",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "idle_down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle_right",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 20.0
+
+[node name="Enemy" type="Area2D"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+speed = 200
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+
+frames = SubResource( 1 )
+animation = "idle_down"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( -0.0597759, -0.0981095 )
+scale = Vector2( 0.638782, 0.433261 )
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+
+

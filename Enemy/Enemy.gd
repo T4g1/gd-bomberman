@@ -3,7 +3,7 @@ extends Area2D
 
 signal hit
 
-# Moving speed of the player
+# Moving speed of the enemy
 export (int) var speed
 
 var screensize
@@ -15,14 +15,7 @@ func _ready():
 
 func _process(delta):
     var velocity = Vector2()
-    if Input.is_action_pressed("ui_right"):
-        velocity.x += 1
-    if Input.is_action_pressed("ui_left"):
-        velocity.x -= 1
-    if Input.is_action_pressed("ui_down"):
-        velocity.y += 1
-    if Input.is_action_pressed("ui_up"):
-        velocity.y -= 1
+    # TODO: AI for enemy
 
     var sprite = $AnimatedSprite
 
@@ -58,4 +51,4 @@ func _process(delta):
 
 
 func _on_area_entered(body):
-    print("Player collide")
+    print("Enemy collide")
