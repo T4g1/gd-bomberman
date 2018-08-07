@@ -9,20 +9,23 @@ export (bool) var destroyable = false setget set_destroyable
 
 
 func _ready():
-    if get_tree().is_editor_hint():
+    if Engine.editor_hint:
         return
 
     pass
 
 
 func _on_area_entered(body):
-    print("Wall collide")
+    pass
+    #print("Wall collide")
 
 
 func set_destroyable(value):
-    var sprite = $AnimatedSprite
-    destroyable = value
-    if destroyable:
-        sprite.animation = "wall"
-    else:
-        sprite.animation = "block"
+    if has_node("AnimatedSprite"):
+        var sprite = $AnimatedSprite
+
+        destroyable = value
+        if destroyable:
+            sprite.animation = "wall"
+        else:
+            sprite.animation = "block"
