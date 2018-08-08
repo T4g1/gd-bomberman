@@ -1,4 +1,4 @@
-extends Area2D
+extends AnimatedSprite
 
 
 signal hit
@@ -24,33 +24,31 @@ func _process(delta):
     if Input.is_action_pressed("ui_up"):
         velocity.y -= 1
 
-    var sprite = $AnimatedSprite
-
     if velocity.length() > 0:
         if velocity.x > 0:
-            sprite.animation = "right"
+            animation = "right"
         elif velocity.x < 0:
-            sprite.animation = "left"
+            animation = "left"
         elif velocity.y > 0:
-            sprite.animation = "down"
+            animation = "down"
         elif velocity.y < 0:
-            sprite.animation = "up"
+            animation = "up"
 
-        sprite.play()
+        play()
 
         velocity = velocity.normalized() * speed
     else:
-        var current_animation = sprite.animation
+        var current_animation = animation
         if current_animation == "right":
-            sprite.animation = "idle_right"
+            animation = "idle_right"
         elif current_animation == "left":
-            sprite.animation = "idle_left"
+            animation = "idle_left"
         elif current_animation == "up":
-            sprite.animation = "idle_up"
+            animation = "idle_up"
         elif current_animation == "down":
-            sprite.animation = "idle_down"
+            animation = "idle_down"
 
-        sprite.stop()
+        stop()
 
     position += velocity * delta
     position.x = clamp(position.x, 0, screensize.x)

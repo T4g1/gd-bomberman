@@ -1,5 +1,5 @@
 tool
-extends Area2D
+extends AnimatedSprite
 
 
 signal hit
@@ -21,11 +21,8 @@ func _on_area_entered(body):
 
 
 func set_destroyable(value):
-    if has_node("AnimatedSprite"):
-        var sprite = $AnimatedSprite
-
-        destroyable = value
-        if destroyable:
-            sprite.animation = "wall"
-        else:
-            sprite.animation = "block"
+    destroyable = value
+    if destroyable:
+        animation = "wall"
+    else:
+        animation = "block"
