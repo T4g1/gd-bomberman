@@ -1,12 +1,11 @@
-extends Area2D
+extends KinematicBody2D
 
-
-signal hit
 
 # Moving speed of the enemy
 export (int) var speed
 
 var screensize
+var velocity = Vector2(0, 0)
 
 
 func _ready():
@@ -45,10 +44,17 @@ func _process(delta):
 
         sprite.stop()
 
-    position += velocity * delta
-    position.x = clamp(position.x, 0, screensize.x)
-    position.y = clamp(position.y, 0, screensize.y)
+
+func _physics_process(delta):
+    pass
+    #var collision_info = move_and_collide(velocity * delta)
 
 
-func _on_area_entered(body):
-    print("Enemy collide")
+func get_class():
+    return "Enemy"
+
+
+func is_class(type):
+    if type == get_class():
+        return true
+    return .is_type(type)

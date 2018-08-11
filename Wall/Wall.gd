@@ -1,28 +1,28 @@
 tool
-extends AnimatedSprite
+extends StaticBody2D
 
-
-signal hit
 
 # Can the wall be destroyed
 export (bool) var destroyable = false setget set_destroyable
 
 
-func _ready():
-    if Engine.editor_hint:
-        return
-
-    pass
-
-
-func _on_area_entered(body):
-    pass
-    #print("Wall collide")
-
-
 func set_destroyable(value):
     destroyable = value
-    if destroyable:
-        animation = "wall"
-    else:
-        animation = "block"
+
+    if has_node("AnimatedSprite"):
+        var sprite = $AnimatedSprite
+
+        if destroyable:
+            sprite.animation = "wall"
+        else:
+            sprite.animation = "block"
+
+
+func get_class():
+    return "Wall"
+
+
+func is_class(type):
+    if type == get_class():
+        return true
+    return .is_type(type)

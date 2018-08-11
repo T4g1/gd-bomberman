@@ -19,7 +19,7 @@ func _ready():
     if Engine.editor_hint:
         return
 
-    generate_level(false)
+    #generate_level(false)
 
 
 func generate_level(value):

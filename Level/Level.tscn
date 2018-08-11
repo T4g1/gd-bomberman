@@ -1,116 +1,12 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://Wall/Wall.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Wall/block.png" type="Texture" id=3]
-[ext_resource path="res://Wall/wall.png" type="Texture" id=4]
-[ext_resource path="res://Wall/Wall.gd" type="Script" id=5]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Player/left/0.png" type="Texture" id=7]
-[ext_resource path="res://Player/left/1.png" type="Texture" id=8]
-[ext_resource path="res://Player/left/2.png" type="Texture" id=9]
-[ext_resource path="res://Player/left/3.png" type="Texture" id=10]
-[ext_resource path="res://Player/left/4.png" type="Texture" id=11]
-[ext_resource path="res://Player/right/0.png" type="Texture" id=12]
-[ext_resource path="res://Player/right/1.png" type="Texture" id=13]
-[ext_resource path="res://Player/right/2.png" type="Texture" id=14]
-[ext_resource path="res://Player/right/3.png" type="Texture" id=15]
-[ext_resource path="res://Player/right/4.png" type="Texture" id=16]
-[ext_resource path="res://Player/up/0.png" type="Texture" id=17]
-[ext_resource path="res://Player/up/1.png" type="Texture" id=18]
-[ext_resource path="res://Player/up/3.png" type="Texture" id=19]
-[ext_resource path="res://Player/up/4.png" type="Texture" id=20]
-[ext_resource path="res://Player/down/0.png" type="Texture" id=21]
-[ext_resource path="res://Player/down/1.png" type="Texture" id=22]
-[ext_resource path="res://Player/down/3.png" type="Texture" id=23]
-[ext_resource path="res://Player/down/4.png" type="Texture" id=24]
-[ext_resource path="res://Player/down/2.png" type="Texture" id=25]
-[ext_resource path="res://Player/win/0.png" type="Texture" id=26]
-[ext_resource path="res://Player/die/0.png" type="Texture" id=27]
-[ext_resource path="res://Player/die/1.png" type="Texture" id=28]
-[ext_resource path="res://Player/die/2.png" type="Texture" id=29]
-[ext_resource path="res://Player/die/3.png" type="Texture" id=30]
-[ext_resource path="res://Player/die/4.png" type="Texture" id=31]
-[ext_resource path="res://Player/die/5.png" type="Texture" id=32]
-[ext_resource path="res://Player/die/6.png" type="Texture" id=33]
-[ext_resource path="res://Player/up/2.png" type="Texture" id=34]
-[ext_resource path="res://Player/Player.gd" type="Script" id=35]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Bomb/Bomb.tscn" type="PackedScene" id=5]
 
-[sub_resource type="SpriteFrames" id=1]
-
-animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "block",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "wall",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "explode",
-"speed": 5.0
-} ]
-
-[sub_resource type="SpriteFrames" id=2]
-
-animations = [ {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "left",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
-"loop": true,
-"name": "right",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
-"loop": true,
-"name": "up",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ],
-"loop": true,
-"name": "down",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 14 ) ],
-"loop": true,
-"name": "idle_right",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 25 ) ],
-"loop": true,
-"name": "idle_down",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 26 ) ],
-"loop": true,
-"name": "win",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "idle_left",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ) ],
-"loop": false,
-"name": "die",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 34 ) ],
-"loop": true,
-"name": "idle_up",
-"speed": 5.0
-} ]
-
-[node name="Level" type="Node" index="0"]
-
+[node name="Level" type="Node"]
 script = ExtResource( 1 )
 width = 15
 height = 15
@@ -120,2017 +16,716 @@ wall_path = "res://Wall/Wall.tscn"
 player_path = "res://Player/Player.tscn"
 enemy_path = "res://Enemy/Enemy.tscn"
 
-[node name="Wall" type="AnimatedSprite" parent="." index="0" instance=ExtResource( 2 )]
-
+[node name="Wall" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 16 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall2" type="AnimatedSprite" parent="." index="1" instance=ExtResource( 2 )]
-
+[node name="Wall2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 32 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall3" type="AnimatedSprite" parent="." index="2" instance=ExtResource( 2 )]
-
+[node name="Wall3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 48 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall4" type="AnimatedSprite" parent="." index="3" instance=ExtResource( 2 )]
-
+[node name="Wall4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 64 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall5" type="AnimatedSprite" parent="." index="4" instance=ExtResource( 2 )]
-
+[node name="Wall5" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 80 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall6" type="AnimatedSprite" parent="." index="5" instance=ExtResource( 2 )]
-
+[node name="Wall6" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 96 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall7" type="AnimatedSprite" parent="." index="6" instance=ExtResource( 2 )]
-
+[node name="Wall7" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 112 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall8" type="AnimatedSprite" parent="." index="7" instance=ExtResource( 2 )]
-
+[node name="Wall8" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 128 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall9" type="AnimatedSprite" parent="." index="8" instance=ExtResource( 2 )]
-
+[node name="Wall9" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 144 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall10" type="AnimatedSprite" parent="." index="9" instance=ExtResource( 2 )]
-
+[node name="Wall10" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 160 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall11" type="AnimatedSprite" parent="." index="10" instance=ExtResource( 2 )]
-
+[node name="Wall11" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 176 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall12" type="AnimatedSprite" parent="." index="11" instance=ExtResource( 2 )]
-
+[node name="Wall12" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 192 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall13" type="AnimatedSprite" parent="." index="12" instance=ExtResource( 2 )]
-
+[node name="Wall13" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 208 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall14" type="AnimatedSprite" parent="." index="13" instance=ExtResource( 2 )]
-
+[node name="Wall14" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 224 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall15" type="AnimatedSprite" parent="." index="14" instance=ExtResource( 2 )]
-
+[node name="Wall15" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 240 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall16" type="AnimatedSprite" parent="." index="15" instance=ExtResource( 2 )]
-
+[node name="Wall16" parent="." instance=ExtResource( 2 )]
 position = Vector2( 32, 16 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall17" type="AnimatedSprite" parent="." index="16" instance=ExtResource( 2 )]
-
-position = Vector2( 32, 64 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = true
-
-[node name="Wall18" type="AnimatedSprite" parent="." index="17" instance=ExtResource( 2 )]
-
+[node name="Wall18" parent="." instance=ExtResource( 2 )]
 position = Vector2( 32, 80 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall19" type="AnimatedSprite" parent="." index="18" instance=ExtResource( 2 )]
-
+[node name="Wall19" parent="." instance=ExtResource( 2 )]
 position = Vector2( 32, 96 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall20" type="AnimatedSprite" parent="." index="19" instance=ExtResource( 2 )]
-
+[node name="Wall20" parent="." instance=ExtResource( 2 )]
 position = Vector2( 32, 112 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall21" type="AnimatedSprite" parent="." index="20" instance=ExtResource( 2 )]
-
+[node name="Wall21" parent="." instance=ExtResource( 2 )]
 position = Vector2( 32, 160 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall22" type="AnimatedSprite" parent="." index="21" instance=ExtResource( 2 )]
-
+[node name="Wall22" parent="." instance=ExtResource( 2 )]
 position = Vector2( 32, 176 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall23" type="AnimatedSprite" parent="." index="22" instance=ExtResource( 2 )]
-
+[node name="Wall23" parent="." instance=ExtResource( 2 )]
 position = Vector2( 32, 192 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall24" type="AnimatedSprite" parent="." index="23" instance=ExtResource( 2 )]
-
+[node name="Wall24" parent="." instance=ExtResource( 2 )]
 position = Vector2( 32, 240 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall25" type="AnimatedSprite" parent="." index="24" instance=ExtResource( 2 )]
-
+[node name="Wall25" parent="." instance=ExtResource( 2 )]
 position = Vector2( 48, 16 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall26" type="AnimatedSprite" parent="." index="25" instance=ExtResource( 2 )]
-
+[node name="Wall27" parent="." instance=ExtResource( 2 )]
 position = Vector2( 48, 48 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall27" type="AnimatedSprite" parent="." index="26" instance=ExtResource( 2 )]
-
+[node name="Wall28" parent="." instance=ExtResource( 2 )]
 position = Vector2( 48, 64 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall28" type="AnimatedSprite" parent="." index="27" instance=ExtResource( 2 )]
-
+[node name="Wall29" parent="." instance=ExtResource( 2 )]
 position = Vector2( 48, 80 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall29" type="AnimatedSprite" parent="." index="28" instance=ExtResource( 2 )]
-
+[node name="Wall30" parent="." instance=ExtResource( 2 )]
 position = Vector2( 48, 96 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall30" type="AnimatedSprite" parent="." index="29" instance=ExtResource( 2 )]
-
+[node name="Wall31" parent="." instance=ExtResource( 2 )]
 position = Vector2( 48, 112 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall31" type="AnimatedSprite" parent="." index="30" instance=ExtResource( 2 )]
-
+[node name="Wall32" parent="." instance=ExtResource( 2 )]
 position = Vector2( 48, 144 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall32" type="AnimatedSprite" parent="." index="31" instance=ExtResource( 2 )]
-
+[node name="Wall33" parent="." instance=ExtResource( 2 )]
 position = Vector2( 48, 160 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall33" type="AnimatedSprite" parent="." index="32" instance=ExtResource( 2 )]
-
+[node name="Wall34" parent="." instance=ExtResource( 2 )]
 position = Vector2( 48, 176 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall34" type="AnimatedSprite" parent="." index="33" instance=ExtResource( 2 )]
-
+[node name="Wall35" parent="." instance=ExtResource( 2 )]
 position = Vector2( 48, 192 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall35" type="AnimatedSprite" parent="." index="34" instance=ExtResource( 2 )]
-
+[node name="Wall36" parent="." instance=ExtResource( 2 )]
 position = Vector2( 48, 208 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall36" type="AnimatedSprite" parent="." index="35" instance=ExtResource( 2 )]
-
+[node name="Wall37" parent="." instance=ExtResource( 2 )]
 position = Vector2( 48, 224 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall37" type="AnimatedSprite" parent="." index="36" instance=ExtResource( 2 )]
-
+[node name="Wall38" parent="." instance=ExtResource( 2 )]
 position = Vector2( 48, 240 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall38" type="AnimatedSprite" parent="." index="37" instance=ExtResource( 2 )]
-
+[node name="Wall40" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 16 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall39" type="AnimatedSprite" parent="." index="38" instance=ExtResource( 2 )]
-
+[node name="Wall41" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 32 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall40" type="AnimatedSprite" parent="." index="39" instance=ExtResource( 2 )]
-
+[node name="Wall42" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 48 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall41" type="AnimatedSprite" parent="." index="40" instance=ExtResource( 2 )]
-
+[node name="Wall43" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 64 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall42" type="AnimatedSprite" parent="." index="41" instance=ExtResource( 2 )]
-
+[node name="Wall44" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 80 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall43" type="AnimatedSprite" parent="." index="42" instance=ExtResource( 2 )]
-
+[node name="Wall45" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 96 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall44" type="AnimatedSprite" parent="." index="43" instance=ExtResource( 2 )]
-
+[node name="Wall46" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 112 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall45" type="AnimatedSprite" parent="." index="44" instance=ExtResource( 2 )]
-
+[node name="Wall47" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 144 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall46" type="AnimatedSprite" parent="." index="45" instance=ExtResource( 2 )]
-
+[node name="Wall48" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 160 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall47" type="AnimatedSprite" parent="." index="46" instance=ExtResource( 2 )]
-
+[node name="Wall49" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 176 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall48" type="AnimatedSprite" parent="." index="47" instance=ExtResource( 2 )]
-
+[node name="Wall50" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 208 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall49" type="AnimatedSprite" parent="." index="48" instance=ExtResource( 2 )]
-
+[node name="Wall51" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 224 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall50" type="AnimatedSprite" parent="." index="49" instance=ExtResource( 2 )]
-
+[node name="Wall53" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 240 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall51" type="AnimatedSprite" parent="." index="50" instance=ExtResource( 2 )]
-
+[node name="Wall54" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 16 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall52" type="AnimatedSprite" parent="." index="51" instance=ExtResource( 2 )]
-
+[node name="Wall55" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 32 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall53" type="AnimatedSprite" parent="." index="52" instance=ExtResource( 2 )]
-
+[node name="Wall56" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 48 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall54" type="AnimatedSprite" parent="." index="53" instance=ExtResource( 2 )]
-
+[node name="Wall57" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 64 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall55" type="AnimatedSprite" parent="." index="54" instance=ExtResource( 2 )]
-
+[node name="Wall58" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 80 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall56" type="AnimatedSprite" parent="." index="55" instance=ExtResource( 2 )]
-
+[node name="Wall59" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 96 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall57" type="AnimatedSprite" parent="." index="56" instance=ExtResource( 2 )]
-
+[node name="Wall60" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 112 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall58" type="AnimatedSprite" parent="." index="57" instance=ExtResource( 2 )]
-
+[node name="Wall61" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 128 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall59" type="AnimatedSprite" parent="." index="58" instance=ExtResource( 2 )]
-
+[node name="Wall62" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 144 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall60" type="AnimatedSprite" parent="." index="59" instance=ExtResource( 2 )]
-
+[node name="Wall63" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 160 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall61" type="AnimatedSprite" parent="." index="60" instance=ExtResource( 2 )]
-
+[node name="Wall64" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 176 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall62" type="AnimatedSprite" parent="." index="61" instance=ExtResource( 2 )]
-
+[node name="Wall65" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 192 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall63" type="AnimatedSprite" parent="." index="62" instance=ExtResource( 2 )]
-
+[node name="Wall67" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 208 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall64" type="AnimatedSprite" parent="." index="63" instance=ExtResource( 2 )]
-
+[node name="Wall68" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 240 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall65" type="AnimatedSprite" parent="." index="64" instance=ExtResource( 2 )]
-
+[node name="Wall69" parent="." instance=ExtResource( 2 )]
 position = Vector2( 96, 16 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall66" type="AnimatedSprite" parent="." index="65" instance=ExtResource( 2 )]
-
+[node name="Wall70" parent="." instance=ExtResource( 2 )]
 position = Vector2( 96, 32 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall67" type="AnimatedSprite" parent="." index="66" instance=ExtResource( 2 )]
-
+[node name="Wall71" parent="." instance=ExtResource( 2 )]
 position = Vector2( 96, 48 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall68" type="AnimatedSprite" parent="." index="67" instance=ExtResource( 2 )]
-
+[node name="Wall72" parent="." instance=ExtResource( 2 )]
 position = Vector2( 96, 64 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall69" type="AnimatedSprite" parent="." index="68" instance=ExtResource( 2 )]
-
+[node name="Wall73" parent="." instance=ExtResource( 2 )]
 position = Vector2( 96, 128 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall70" type="AnimatedSprite" parent="." index="69" instance=ExtResource( 2 )]
-
+[node name="Wall74" parent="." instance=ExtResource( 2 )]
 position = Vector2( 96, 144 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall71" type="AnimatedSprite" parent="." index="70" instance=ExtResource( 2 )]
-
+[node name="Wall75" parent="." instance=ExtResource( 2 )]
 position = Vector2( 96, 176 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall72" type="AnimatedSprite" parent="." index="71" instance=ExtResource( 2 )]
-
+[node name="Wall77" parent="." instance=ExtResource( 2 )]
 position = Vector2( 96, 192 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall73" type="AnimatedSprite" parent="." index="72" instance=ExtResource( 2 )]
-
+[node name="Wall78" parent="." instance=ExtResource( 2 )]
 position = Vector2( 96, 208 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall74" type="AnimatedSprite" parent="." index="73" instance=ExtResource( 2 )]
-
+[node name="Wall79" parent="." instance=ExtResource( 2 )]
 position = Vector2( 96, 240 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall75" type="AnimatedSprite" parent="." index="74" instance=ExtResource( 2 )]
-
+[node name="Wall80" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 16 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall76" type="AnimatedSprite" parent="." index="75" instance=ExtResource( 2 )]
-
+[node name="Wall81" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 32 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall77" type="AnimatedSprite" parent="." index="76" instance=ExtResource( 2 )]
-
+[node name="Wall82" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 48 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall78" type="AnimatedSprite" parent="." index="77" instance=ExtResource( 2 )]
-
+[node name="Wall83" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 64 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall79" type="AnimatedSprite" parent="." index="78" instance=ExtResource( 2 )]
-
+[node name="Wall84" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 80 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall80" type="AnimatedSprite" parent="." index="79" instance=ExtResource( 2 )]
-
+[node name="Wall85" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 96 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall81" type="AnimatedSprite" parent="." index="80" instance=ExtResource( 2 )]
-
+[node name="Wall86" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 112 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall82" type="AnimatedSprite" parent="." index="81" instance=ExtResource( 2 )]
-
+[node name="Wall87" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 128 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall83" type="AnimatedSprite" parent="." index="82" instance=ExtResource( 2 )]
-
+[node name="Wall88" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 144 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall84" type="AnimatedSprite" parent="." index="83" instance=ExtResource( 2 )]
-
+[node name="Wall89" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 160 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall85" type="AnimatedSprite" parent="." index="84" instance=ExtResource( 2 )]
-
+[node name="Wall90" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 176 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall86" type="AnimatedSprite" parent="." index="85" instance=ExtResource( 2 )]
-
+[node name="Wall92" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 192 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall87" type="AnimatedSprite" parent="." index="86" instance=ExtResource( 2 )]
-
+[node name="Wall93" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 208 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall88" type="AnimatedSprite" parent="." index="87" instance=ExtResource( 2 )]
-
+[node name="Wall94" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 224 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall89" type="AnimatedSprite" parent="." index="88" instance=ExtResource( 2 )]
-
+[node name="Wall95" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 240 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall90" type="AnimatedSprite" parent="." index="89" instance=ExtResource( 2 )]
-
+[node name="Wall96" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 16 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall91" type="AnimatedSprite" parent="." index="90" instance=ExtResource( 2 )]
-
+[node name="Wall97" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 32 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall92" type="AnimatedSprite" parent="." index="91" instance=ExtResource( 2 )]
-
+[node name="Wall98" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 48 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall93" type="AnimatedSprite" parent="." index="92" instance=ExtResource( 2 )]
-
+[node name="Wall99" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 64 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall94" type="AnimatedSprite" parent="." index="93" instance=ExtResource( 2 )]
-
+[node name="Wall100" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 80 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall95" type="AnimatedSprite" parent="." index="94" instance=ExtResource( 2 )]
-
+[node name="Wall101" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 96 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall96" type="AnimatedSprite" parent="." index="95" instance=ExtResource( 2 )]
-
+[node name="Wall102" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 112 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall97" type="AnimatedSprite" parent="." index="96" instance=ExtResource( 2 )]
-
+[node name="Wall103" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 128 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall98" type="AnimatedSprite" parent="." index="97" instance=ExtResource( 2 )]
-
+[node name="Wall104" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 144 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall99" type="AnimatedSprite" parent="." index="98" instance=ExtResource( 2 )]
-
+[node name="Wall105" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 160 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall100" type="AnimatedSprite" parent="." index="99" instance=ExtResource( 2 )]
-
+[node name="Wall107" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 176 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall101" type="AnimatedSprite" parent="." index="100" instance=ExtResource( 2 )]
-
+[node name="Wall108" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 192 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall102" type="AnimatedSprite" parent="." index="101" instance=ExtResource( 2 )]
-
+[node name="Wall109" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 208 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall103" type="AnimatedSprite" parent="." index="102" instance=ExtResource( 2 )]
-
+[node name="Wall110" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 224 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall104" type="AnimatedSprite" parent="." index="103" instance=ExtResource( 2 )]
-
+[node name="Wall111" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 240 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall105" type="AnimatedSprite" parent="." index="104" instance=ExtResource( 2 )]
-
+[node name="Wall112" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 16 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall106" type="AnimatedSprite" parent="." index="105" instance=ExtResource( 2 )]
-
+[node name="Wall113" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 32 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall107" type="AnimatedSprite" parent="." index="106" instance=ExtResource( 2 )]
-
+[node name="Wall114" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 48 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall108" type="AnimatedSprite" parent="." index="107" instance=ExtResource( 2 )]
-
+[node name="Wall115" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 64 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall109" type="AnimatedSprite" parent="." index="108" instance=ExtResource( 2 )]
-
+[node name="Wall116" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 80 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall110" type="AnimatedSprite" parent="." index="109" instance=ExtResource( 2 )]
-
+[node name="Wall117" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 112 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall111" type="AnimatedSprite" parent="." index="110" instance=ExtResource( 2 )]
-
+[node name="Wall118" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 128 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall112" type="AnimatedSprite" parent="." index="111" instance=ExtResource( 2 )]
-
+[node name="Wall119" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 144 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall113" type="AnimatedSprite" parent="." index="112" instance=ExtResource( 2 )]
-
+[node name="Wall121" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 160 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall114" type="AnimatedSprite" parent="." index="113" instance=ExtResource( 2 )]
-
+[node name="Wall122" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 176 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall115" type="AnimatedSprite" parent="." index="114" instance=ExtResource( 2 )]
-
+[node name="Wall123" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 192 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall116" type="AnimatedSprite" parent="." index="115" instance=ExtResource( 2 )]
-
+[node name="Wall124" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 208 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall117" type="AnimatedSprite" parent="." index="116" instance=ExtResource( 2 )]
-
+[node name="Wall125" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 224 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall118" type="AnimatedSprite" parent="." index="117" instance=ExtResource( 2 )]
-
+[node name="Wall126" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 240 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall119" type="AnimatedSprite" parent="." index="118" instance=ExtResource( 2 )]
-
+[node name="Wall127" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 16 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall120" type="AnimatedSprite" parent="." index="119" instance=ExtResource( 2 )]
-
+[node name="Wall128" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 32 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall121" type="AnimatedSprite" parent="." index="120" instance=ExtResource( 2 )]
-
+[node name="Wall129" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 48 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall122" type="AnimatedSprite" parent="." index="121" instance=ExtResource( 2 )]
-
+[node name="Wall130" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 64 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall123" type="AnimatedSprite" parent="." index="122" instance=ExtResource( 2 )]
-
+[node name="Wall131" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 80 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall124" type="AnimatedSprite" parent="." index="123" instance=ExtResource( 2 )]
-
+[node name="Wall132" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 96 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall125" type="AnimatedSprite" parent="." index="124" instance=ExtResource( 2 )]
-
+[node name="Wall134" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 112 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall126" type="AnimatedSprite" parent="." index="125" instance=ExtResource( 2 )]
-
+[node name="Wall135" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 128 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall127" type="AnimatedSprite" parent="." index="126" instance=ExtResource( 2 )]
-
+[node name="Wall136" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 144 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall128" type="AnimatedSprite" parent="." index="127" instance=ExtResource( 2 )]
-
+[node name="Wall137" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 160 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall129" type="AnimatedSprite" parent="." index="128" instance=ExtResource( 2 )]
-
+[node name="Wall138" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 192 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall130" type="AnimatedSprite" parent="." index="129" instance=ExtResource( 2 )]
-
+[node name="Wall139" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 224 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall131" type="AnimatedSprite" parent="." index="130" instance=ExtResource( 2 )]
-
+[node name="Wall140" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 240 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall132" type="AnimatedSprite" parent="." index="131" instance=ExtResource( 2 )]
-
+[node name="Wall141" parent="." instance=ExtResource( 2 )]
 position = Vector2( 176, 16 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall133" type="AnimatedSprite" parent="." index="132" instance=ExtResource( 2 )]
-
+[node name="Wall142" parent="." instance=ExtResource( 2 )]
 position = Vector2( 176, 32 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall134" type="AnimatedSprite" parent="." index="133" instance=ExtResource( 2 )]
-
+[node name="Wall143" parent="." instance=ExtResource( 2 )]
 position = Vector2( 176, 48 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall135" type="AnimatedSprite" parent="." index="134" instance=ExtResource( 2 )]
-
+[node name="Wall144" parent="." instance=ExtResource( 2 )]
 position = Vector2( 176, 64 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall136" type="AnimatedSprite" parent="." index="135" instance=ExtResource( 2 )]
-
+[node name="Wall145" parent="." instance=ExtResource( 2 )]
 position = Vector2( 176, 80 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall137" type="AnimatedSprite" parent="." index="136" instance=ExtResource( 2 )]
-
+[node name="Wall146" parent="." instance=ExtResource( 2 )]
 position = Vector2( 176, 96 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall138" type="AnimatedSprite" parent="." index="137" instance=ExtResource( 2 )]
-
+[node name="Wall147" parent="." instance=ExtResource( 2 )]
 position = Vector2( 176, 112 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall139" type="AnimatedSprite" parent="." index="138" instance=ExtResource( 2 )]
-
+[node name="Wall148" parent="." instance=ExtResource( 2 )]
 position = Vector2( 176, 128 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall140" type="AnimatedSprite" parent="." index="139" instance=ExtResource( 2 )]
-
+[node name="Wall149" parent="." instance=ExtResource( 2 )]
 position = Vector2( 176, 144 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall141" type="AnimatedSprite" parent="." index="140" instance=ExtResource( 2 )]
-
+[node name="Wall150" parent="." instance=ExtResource( 2 )]
 position = Vector2( 176, 160 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall142" type="AnimatedSprite" parent="." index="141" instance=ExtResource( 2 )]
-
+[node name="Wall151" parent="." instance=ExtResource( 2 )]
 position = Vector2( 176, 176 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall143" type="AnimatedSprite" parent="." index="142" instance=ExtResource( 2 )]
-
+[node name="Wall152" parent="." instance=ExtResource( 2 )]
 position = Vector2( 176, 192 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall144" type="AnimatedSprite" parent="." index="143" instance=ExtResource( 2 )]
-
+[node name="Wall153" parent="." instance=ExtResource( 2 )]
 position = Vector2( 176, 208 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall145" type="AnimatedSprite" parent="." index="144" instance=ExtResource( 2 )]
-
+[node name="Wall154" parent="." instance=ExtResource( 2 )]
 position = Vector2( 176, 224 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall146" type="AnimatedSprite" parent="." index="145" instance=ExtResource( 2 )]
-
+[node name="Wall155" parent="." instance=ExtResource( 2 )]
 position = Vector2( 176, 240 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall147" type="AnimatedSprite" parent="." index="146" instance=ExtResource( 2 )]
-
+[node name="Wall156" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, 16 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall148" type="AnimatedSprite" parent="." index="147" instance=ExtResource( 2 )]
-
+[node name="Wall157" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, 48 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall149" type="AnimatedSprite" parent="." index="148" instance=ExtResource( 2 )]
-
+[node name="Wall158" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, 64 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall150" type="AnimatedSprite" parent="." index="149" instance=ExtResource( 2 )]
-
+[node name="Wall159" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, 96 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall151" type="AnimatedSprite" parent="." index="150" instance=ExtResource( 2 )]
-
+[node name="Wall160" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, 128 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall152" type="AnimatedSprite" parent="." index="151" instance=ExtResource( 2 )]
-
+[node name="Wall161" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, 144 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall153" type="AnimatedSprite" parent="." index="152" instance=ExtResource( 2 )]
-
+[node name="Wall162" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, 176 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall154" type="AnimatedSprite" parent="." index="153" instance=ExtResource( 2 )]
-
+[node name="Wall163" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, 192 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall155" type="AnimatedSprite" parent="." index="154" instance=ExtResource( 2 )]
-
+[node name="Wall164" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, 208 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall156" type="AnimatedSprite" parent="." index="155" instance=ExtResource( 2 )]
-
+[node name="Wall165" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, 224 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall157" type="AnimatedSprite" parent="." index="156" instance=ExtResource( 2 )]
-
+[node name="Wall166" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, 240 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall158" type="AnimatedSprite" parent="." index="157" instance=ExtResource( 2 )]
-
+[node name="Wall167" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 16 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall159" type="AnimatedSprite" parent="." index="158" instance=ExtResource( 2 )]
-
+[node name="Wall168" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 32 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall160" type="AnimatedSprite" parent="." index="159" instance=ExtResource( 2 )]
-
+[node name="Wall169" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 48 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall161" type="AnimatedSprite" parent="." index="160" instance=ExtResource( 2 )]
-
+[node name="Wall170" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 64 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall162" type="AnimatedSprite" parent="." index="161" instance=ExtResource( 2 )]
-
+[node name="Wall171" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 80 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall163" type="AnimatedSprite" parent="." index="162" instance=ExtResource( 2 )]
-
+[node name="Wall172" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 96 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall164" type="AnimatedSprite" parent="." index="163" instance=ExtResource( 2 )]
-
+[node name="Wall173" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 112 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall165" type="AnimatedSprite" parent="." index="164" instance=ExtResource( 2 )]
-
+[node name="Wall174" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 128 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall166" type="AnimatedSprite" parent="." index="165" instance=ExtResource( 2 )]
-
+[node name="Wall175" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 144 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall167" type="AnimatedSprite" parent="." index="166" instance=ExtResource( 2 )]
-
+[node name="Wall176" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 160 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall168" type="AnimatedSprite" parent="." index="167" instance=ExtResource( 2 )]
-
+[node name="Wall177" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 176 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall169" type="AnimatedSprite" parent="." index="168" instance=ExtResource( 2 )]
-
+[node name="Wall178" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 192 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall170" type="AnimatedSprite" parent="." index="169" instance=ExtResource( 2 )]
-
+[node name="Wall179" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 208 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall171" type="AnimatedSprite" parent="." index="170" instance=ExtResource( 2 )]
-
+[node name="Wall180" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 240 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall172" type="AnimatedSprite" parent="." index="171" instance=ExtResource( 2 )]
-
+[node name="Wall181" parent="." instance=ExtResource( 2 )]
 position = Vector2( 224, 16 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall173" type="AnimatedSprite" parent="." index="172" instance=ExtResource( 2 )]
-
+[node name="Wall182" parent="." instance=ExtResource( 2 )]
 position = Vector2( 224, 32 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall174" type="AnimatedSprite" parent="." index="173" instance=ExtResource( 2 )]
-
+[node name="Wall183" parent="." instance=ExtResource( 2 )]
 position = Vector2( 224, 48 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall175" type="AnimatedSprite" parent="." index="174" instance=ExtResource( 2 )]
-
+[node name="Wall184" parent="." instance=ExtResource( 2 )]
 position = Vector2( 224, 64 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall176" type="AnimatedSprite" parent="." index="175" instance=ExtResource( 2 )]
-
+[node name="Wall185" parent="." instance=ExtResource( 2 )]
 position = Vector2( 224, 80 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall177" type="AnimatedSprite" parent="." index="176" instance=ExtResource( 2 )]
-
+[node name="Wall186" parent="." instance=ExtResource( 2 )]
 position = Vector2( 224, 96 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall178" type="AnimatedSprite" parent="." index="177" instance=ExtResource( 2 )]
-
+[node name="Wall187" parent="." instance=ExtResource( 2 )]
 position = Vector2( 224, 112 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall179" type="AnimatedSprite" parent="." index="178" instance=ExtResource( 2 )]
-
+[node name="Wall188" parent="." instance=ExtResource( 2 )]
 position = Vector2( 224, 128 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall180" type="AnimatedSprite" parent="." index="179" instance=ExtResource( 2 )]
-
+[node name="Wall189" parent="." instance=ExtResource( 2 )]
 position = Vector2( 224, 144 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall181" type="AnimatedSprite" parent="." index="180" instance=ExtResource( 2 )]
-
+[node name="Wall190" parent="." instance=ExtResource( 2 )]
 position = Vector2( 224, 160 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall182" type="AnimatedSprite" parent="." index="181" instance=ExtResource( 2 )]
-
+[node name="Wall191" parent="." instance=ExtResource( 2 )]
 position = Vector2( 224, 192 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall183" type="AnimatedSprite" parent="." index="182" instance=ExtResource( 2 )]
-
+[node name="Wall192" parent="." instance=ExtResource( 2 )]
 position = Vector2( 224, 208 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall184" type="AnimatedSprite" parent="." index="183" instance=ExtResource( 2 )]
-
+[node name="Wall193" parent="." instance=ExtResource( 2 )]
 position = Vector2( 224, 224 )
-frames = SubResource( 1 )
-animation = "wall"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 destroyable = true
 
-[node name="Wall185" type="AnimatedSprite" parent="." index="184" instance=ExtResource( 2 )]
-
+[node name="Wall194" parent="." instance=ExtResource( 2 )]
 position = Vector2( 224, 240 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall186" type="AnimatedSprite" parent="." index="185" instance=ExtResource( 2 )]
-
+[node name="Wall195" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 16 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall187" type="AnimatedSprite" parent="." index="186" instance=ExtResource( 2 )]
-
+[node name="Wall196" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 32 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall188" type="AnimatedSprite" parent="." index="187" instance=ExtResource( 2 )]
-
+[node name="Wall197" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 48 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall189" type="AnimatedSprite" parent="." index="188" instance=ExtResource( 2 )]
-
+[node name="Wall198" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 64 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall190" type="AnimatedSprite" parent="." index="189" instance=ExtResource( 2 )]
-
+[node name="Wall199" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 80 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall191" type="AnimatedSprite" parent="." index="190" instance=ExtResource( 2 )]
-
+[node name="Wall200" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 96 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall192" type="AnimatedSprite" parent="." index="191" instance=ExtResource( 2 )]
-
+[node name="Wall232" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 112 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall193" type="AnimatedSprite" parent="." index="192" instance=ExtResource( 2 )]
-
+[node name="Wall258" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 128 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall194" type="AnimatedSprite" parent="." index="193" instance=ExtResource( 2 )]
-
+[node name="Wall270" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 144 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall195" type="AnimatedSprite" parent="." index="194" instance=ExtResource( 2 )]
-
+[node name="Wall284" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 160 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall196" type="AnimatedSprite" parent="." index="195" instance=ExtResource( 2 )]
-
+[node name="Wall391" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 176 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall197" type="AnimatedSprite" parent="." index="196" instance=ExtResource( 2 )]
-
+[node name="Wall392" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 192 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall393" type="AnimatedSprite" parent="." index="197" instance=ExtResource( 2 )]
-
+[node name="Wall393" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 208 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall394" type="AnimatedSprite" parent="." index="198" instance=ExtResource( 2 )]
-
+[node name="Wall394" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 224 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Wall395" type="AnimatedSprite" parent="." index="199" instance=ExtResource( 2 )]
-
+[node name="Wall395" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 240 )
-frames = SubResource( 1 )
-animation = "block"
-playing = true
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-destroyable = false
 
-[node name="Player" type="AnimatedSprite" parent="." index="200" instance=ExtResource( 6 )]
-
+[node name="Player2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 32, 24 )
-frames = SubResource( 2 )
-animation = "idle_down"
-playing = true
-script = ExtResource( 35 )
-_sections_unfolded = [ "Collision", "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
-speed = 150
 
+[node name="Enemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 31.4664, 61.4879 )
+
+[node name="Bomb" parent="." instance=ExtResource( 5 )]
+position = Vector2( 47.8158, 29.0399 )
 
