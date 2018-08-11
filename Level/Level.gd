@@ -19,8 +19,21 @@ func _ready():
     if Engine.editor_hint:
         return
 
-    #generate_level(false)
+    generate_level(false)
 
+
+func clear_level():
+    """
+    Remove all Player, Wall from the scene
+    """
+    var REMOVE_CLASS = [
+        "Player",
+        "Wall"
+    ]
+    # Remove existing level
+    for node in get_children():
+        if node.get_class() in REMOVE_CLASS:
+            node.queue_free()
 
 func generate_level(value):
     """
@@ -33,9 +46,7 @@ func generate_level(value):
     if !enemy_path:
         return
 
-    # Remove existing level
-    for node in get_children():
-        node.queue_free()
+    clear_level()
 
     var wall_class = load(wall_path)
     var player_class = load(player_path)
@@ -52,7 +63,8 @@ func generate_level(value):
             elif (
                 (x == 1 and y == 1) or
                 (x == 2 and y == 1) or
-                (x == 1 and y == 2)
+                (x == 1 and y == 2) or
+                (x == 1 and y == 3)
             ):
                 continue
             elif (x % 2) == 0 and (y % 2) == 0:
@@ -86,3 +98,7 @@ func generate_level(value):
     player_instance.set_owner(
         get_tree().get_edited_scene_root()
     )
+
+    # Center camera
+    #camera.position.x = (width * 16) / 2
+    #get_viewport().position.y = (height * 16) / 2
