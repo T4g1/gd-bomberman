@@ -7,4 +7,5 @@ script = ExtResource( 1 )
 width = 30
 height = 30
 free_space = 20
+enemy_rate = 50
 

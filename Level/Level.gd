@@ -9,6 +9,7 @@ export (int, 5, 50) var width = 10          # Width of the level
 export (int, 5, 50) var height = 10         # Height of the level
 
 export (int, 0, 100) var free_space = 5     # Amount of free space in percentage
+export (int, 0, 100) var enemy_rate = 50    # Amount of enemy in percentage
 
 
 func _ready():
@@ -41,6 +42,7 @@ func generate_level(value):
     for x in range(width):
         for y in range(height):
             var destroyable = false
+
             if x == 0 or x == width - 1:
                 pass
             elif y == 0 or y == height - 1:
@@ -61,27 +63,24 @@ func generate_level(value):
 
                 # Stay free my dear
                 if randi() % 100 < free_space:
+                    if randi() % 100 < enemy_rate:
+                        spawn(Enemy, Vector2(x, y) * 16)
                     continue
 
-            var wall_instance = Wall.instance()
-            wall_instance.position = Vector2(x, y) * 16
-            wall_instance.destroyable = destroyable
-
-            add_child(wall_instance)
-            wall_instance.set_owner(
-                get_tree().get_edited_scene_root()
-            )
+            var wall = spawn(Wall, Vector2(x, y) * 16)
+            wall.destroyable = destroyable
 
     # Spawn player
-    var player_instance = Player.instance()
+    var player = spawn(Player, Vector2(1, 1) * 16)
 
-    player_instance.position = Vector2(1, 1) * 16
 
-    add_child(player_instance)
-    player_instance.set_owner(
+func spawn(type, position):
+    var instance = type.instance()
+    instance.position = position
+
+    add_child(instance)
+    instance.set_owner(
         get_tree().get_edited_scene_root()
     )
 
-    # Center camera
-    #camera.position.x = (width * 16) / 2
-    #get_viewport().position.y = (height * 16) / 2
+    return instance

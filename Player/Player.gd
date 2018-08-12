@@ -17,8 +17,6 @@ func _ready():
 
 func _process(delta):
     animate()
-    print(position)
-    print(get_level_position())
 
 
 func _physics_process(delta):

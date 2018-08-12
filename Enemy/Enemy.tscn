@@ -72,8 +72,8 @@ animations = [ {
 [sub_resource type="CapsuleShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 7.0
-height = 4.0
+radius = 6.3
+height = 3.8
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "Enemy",
@@ -89,6 +89,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 speed = null
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.9, 0.9 )
 frames = SubResource( 1 )
 animation = "idle_down"
 playing = true
