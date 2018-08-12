@@ -4,12 +4,19 @@ Simple Bomberman implementation using Godot game engine
 
 ![Preview](/doc/preview.png)
 
+# Controls
+
+* ZQSD or arrow keys to move
+* Space to spread chaos and destruction
+
 ## Feature
 
 * Player animations
 * Enemy animations
 * Wall
 * Level generation
+* Bomb
+* Bugs
 
 ## Planned features
 

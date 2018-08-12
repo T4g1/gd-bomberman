@@ -1,4 +1,5 @@
 extends KinematicBody2D
+var Bomb = load("res://Bomb/Bomb.tscn")
 
 
 # Moving speed of the player
@@ -8,34 +9,43 @@ var screensize
 var velocity = Vector2()
 var alive = true
 var timer
+var spawned_bomb = []
 
 
 func _ready():
     screensize = get_viewport_rect().size
 
 
+func _process(delta):
+    animate()
+
+
 func _physics_process(delta):
-    get_input()
     var movement_left = move_and_slide(velocity)
     for i in range(get_slide_count()):
         var collider = get_slide_collision(i).collider
         if collider is Node:
             collide(collider)
 
-func collide(collider):
-    if collider.is_in_group("Enemy"):
-        die()
 
-func destroy(destroyer):
-    die()
+func _input(event):
+    if !alive:
+        return
 
+    velocity = Vector2()
+    if Input.is_action_pressed("ui_right"):
+        velocity.x += 1
+    if Input.is_action_pressed("ui_left"):
+        velocity.x -= 1
+    if Input.is_action_pressed("ui_down"):
+        velocity.y += 1
+    if Input.is_action_pressed("ui_up"):
+        velocity.y -= 1
 
-func die():
-    var sprite = $AnimatedSprite
-    sprite.animation = "die"
-    sprite.play()
+    velocity = velocity.normalized() * speed
 
-    alive = false
+    if event.is_action_pressed("ui_action"):
+        spawn_bomb()
 
 
 func _on_animation_finished():
@@ -56,21 +66,26 @@ func _on_dead():
     queue_free()
 
 
-func get_input():
-    if !alive:
+func collide(collider):
+    if collider.is_in_group("Enemy"):
+        die()
+
+
+func destroy(destroyer):
+    die()
+
+
+func die():
+    var sprite = $AnimatedSprite
+    sprite.animation = "die"
+    sprite.play()
+
+    alive = false
+
+
+func animate():
+    if !has_node("AnimatedSprite") or !alive:
         return
-
-    velocity = Vector2()
-    if Input.is_action_pressed("ui_right"):
-        velocity.x += 1
-    if Input.is_action_pressed("ui_left"):
-        velocity.x -= 1
-    if Input.is_action_pressed("ui_down"):
-        velocity.y += 1
-    if Input.is_action_pressed("ui_up"):
-        velocity.y -= 1
-
-    velocity = velocity.normalized() * speed
 
     # animation
     var sprite = $AnimatedSprite
@@ -98,3 +113,21 @@ func get_input():
             sprite.animation = "idle_down"
 
         sprite.stop()
+
+
+func get_level_position():
+    var x = floor(position.x / 16)
+    var y = floor(position.y / 16)
+
+    return Vector2(x, y)
+
+
+func spawn_bomb():
+    var bomb = Bomb.instance()
+
+    bomb.position = get_level_position() * 16
+
+
+    var current_scene = get_tree().get_current_scene()
+    current_scene.add_child(bomb)
+    bomb.set_owner(current_scene)

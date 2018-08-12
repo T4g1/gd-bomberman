@@ -1,24 +1,17 @@
-tool
 extends Node
+var Wall = load("res://Wall/Wall.tscn")
+var Player = load("res://Player/Player.tscn")
+var Enemy = load("res://Enemy/Enemy.tscn")
 
 
 # Level size
-export (int, 5, 50) var width = 10
-export (int, 5, 50) var height = 10
+export (int, 5, 50) var width = 10          # Width of the level
+export (int, 5, 50) var height = 10         # Height of the level
 
-export (int, 0, 100) var free_space = 5
-
-export (bool) var generate_level_button = false setget generate_level
-
-export (String, FILE) var wall_path
-export (String, FILE) var player_path
-export (String, FILE) var enemy_path
+export (int, 0, 100) var free_space = 5     # Amount of free space in percentage
 
 
 func _ready():
-    if Engine.editor_hint:
-        return
-
     generate_level(false)
 
 
@@ -38,22 +31,12 @@ func clear_level():
                 node.queue_free()
                 break
 
+
 func generate_level(value):
     """
     Generate a whole new level based on width and height
     """
-    if !wall_path:
-        return
-    if !player_path:
-        return
-    if !enemy_path:
-        return
-
     clear_level()
-
-    var wall_class = load(wall_path)
-    var player_class = load(player_path)
-    var enemy_class = load(enemy_path)
 
     for x in range(width):
         for y in range(height):
@@ -80,9 +63,8 @@ func generate_level(value):
                 if randi() % 100 < free_space:
                     continue
 
-            var wall_instance = wall_class.instance()
-            wall_instance.position.x = (x + 1) * 16
-            wall_instance.position.y = (y + 1) * 16
+            var wall_instance = Wall.instance()
+            wall_instance.position = Vector2(x + 1, y + 1) * 16
 
             wall_instance.destroyable = destroyable
 
@@ -92,10 +74,9 @@ func generate_level(value):
             )
 
     # Spawn player
-    var player_instance = player_class.instance()
+    var player_instance = Player.instance()
 
-    player_instance.position.x = 16 * 2
-    player_instance.position.y = 16 * 2 - 8
+    player_instance.position = Vector2(2, 2) * 16
 
     add_child(player_instance)
     player_instance.set_owner(

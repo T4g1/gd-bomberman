@@ -1,9 +1,6 @@
 extends Area2D
 
 
-signal animation_finished
-
-
 var HORIZONTAL = Vector2(1, 0)
 var VERTICAL = Vector2(0, 1)
 
@@ -11,6 +8,7 @@ var VERTICAL = Vector2(0, 1)
 func set_direction(direction, is_end):
     if !has_node("AnimatedSprite"):
         return
+
     var sprite = $AnimatedSprite
     sprite.flip_h = false
     sprite.flip_v = false

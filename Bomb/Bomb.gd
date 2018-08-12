@@ -1,9 +1,9 @@
 extends KinematicBody2D
+var Splosion = load("res://Splosion/Splosion.tscn")
 
 
 export (int, 0) var chrono = 5
 
-var Splosion = load("res://Splosion/Splosion.tscn")
 var BASE_POWER = 2
 var L_DIRECTION = [
     Vector2(0, 1),
