@@ -59,7 +59,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 8, 8 )
+extents = Vector2( 7.5, 7.5 )
 
 [node name="Splosion" type="Area2D"]
 input_pickable = true
@@ -77,7 +77,6 @@ animation = "cross"
 _sections_unfolded = [ "frames" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 2 )
 _sections_unfolded = [ "shape" ]
 
