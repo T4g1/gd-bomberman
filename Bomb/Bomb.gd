@@ -55,14 +55,9 @@ func _on_explode():
             )
 
     queue_free()
+
     timer.queue_free()
 
 
-func get_class():
-    return "Bomb"
-
-
-func is_class(type):
-    if type == get_class():
-        return true
-    return .is_type(type)
+func destroy(destroyer):
+    _on_explode()

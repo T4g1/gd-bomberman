@@ -26,14 +26,17 @@ func clear_level():
     """
     Remove all Player, Wall from the scene
     """
-    var REMOVE_CLASS = [
+    var L_REMOVE_GROUP = [
         "Player",
         "Wall"
     ]
+
     # Remove existing level
     for node in get_children():
-        if node.get_class() in REMOVE_CLASS:
-            node.queue_free()
+        for group_name in L_REMOVE_GROUP:
+            if node.is_in_group(group_name):
+                node.queue_free()
+                break
 
 func generate_level(value):
     """

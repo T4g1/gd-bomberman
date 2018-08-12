@@ -81,4 +81,5 @@ visible = false
 shape = SubResource( 2 )
 _sections_unfolded = [ "shape" ]
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_animation_finished"]

@@ -18,11 +18,8 @@ func set_destroyable(value):
             sprite.animation = "block"
 
 
-func get_class():
-    return "Wall"
+func destroy(destroyer):
+    if !destroyable:
+        return
 
-
-func is_class(type):
-    if type == get_class():
-        return true
-    return .is_type(type)
+    queue_free()

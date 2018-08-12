@@ -18,9 +18,16 @@ func _physics_process(delta):
     get_input()
     var movement_left = move_and_slide(velocity)
     for i in range(get_slide_count()):
-        var collision = get_slide_collision(i)
-        if collision.collider.get_class() == "Enemy":
-            die()
+        var collider = get_slide_collision(i).collider
+        if collider is Node:
+            collide(collider)
+
+func collide(collider):
+    if collider.is_in_group("Enemy"):
+        die()
+
+func destroy(destroyer):
+    die()
 
 
 func die():
@@ -91,14 +98,3 @@ func get_input():
             sprite.animation = "idle_down"
 
         sprite.stop()
-
-
-func get_class():
-    return "Player"
-
-
-func is_class(type):
-    if type == get_class():
-        return true
-    return .is_type(type)
-

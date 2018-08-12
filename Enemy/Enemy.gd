@@ -50,11 +50,5 @@ func _physics_process(delta):
     #var collision_info = move_and_collide(velocity * delta)
 
 
-func get_class():
-    return "Enemy"
-
-
-func is_class(type):
-    if type == get_class():
-        return true
-    return .is_type(type)
+func destroy(destroyer):
+    queue_free()
