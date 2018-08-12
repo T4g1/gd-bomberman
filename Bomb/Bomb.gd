@@ -38,15 +38,12 @@ func add_splosion(position, direction, is_end):
     splosion.position = position
     splosion.set_direction(direction, is_end)
 
-    print(splosion.position)
-
     var current_scene = get_tree().get_current_scene()
     current_scene.add_child(splosion)
     splosion.set_owner(current_scene)
 
 
 func _on_explode():
-    print("boom")
     add_splosion(position, Vector2(0, 0), false)
 
     for i in range(power):
