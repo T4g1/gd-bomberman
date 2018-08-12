@@ -27,20 +27,31 @@ animations = [ {
 custom_solver_bias = 0.0
 radius = 7.0
 
-[node name="Bomb" type="KinematicBody2D" groups=[
+[node name="Bomb" type="RigidBody2D" groups=[
 "Destroyable",
 "Bomb",
 ]]
 input_pickable = false
 collision_layer = 16
-collision_mask = 21
-collision/safe_margin = 0.08
-motion/sync_to_physics = false
+collision_mask = 61
+mode = 1
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+physics_material_override = null
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
+_sections_unfolded = [ "Collision", "Material", "Transform" ]
 chrono = 5
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -55,3 +66,4 @@ _sections_unfolded = [ "Transform", "frames" ]
 shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
