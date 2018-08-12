@@ -18,6 +18,8 @@ func _ready():
 
 func _process(delta):
     animate()
+    print(position)
+    print(get_level_position())
 
 
 func _physics_process(delta):
@@ -116,8 +118,8 @@ func animate():
 
 
 func get_level_position():
-    var x = floor(position.x / 16)
-    var y = floor(position.y / 16)
+    var x = floor((position.x + 8) / 16)
+    var y = floor((position.y + 8) / 16)
 
     return Vector2(x, y)
 
@@ -126,7 +128,6 @@ func spawn_bomb():
     var bomb = Bomb.instance()
 
     bomb.position = get_level_position() * 16
-
 
     var current_scene = get_tree().get_current_scene()
     current_scene.add_child(bomb)

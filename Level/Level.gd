@@ -64,8 +64,7 @@ func generate_level(value):
                     continue
 
             var wall_instance = Wall.instance()
-            wall_instance.position = Vector2(x + 1, y + 1) * 16
-
+            wall_instance.position = Vector2(x, y) * 16
             wall_instance.destroyable = destroyable
 
             add_child(wall_instance)
@@ -76,7 +75,7 @@ func generate_level(value):
     # Spawn player
     var player_instance = Player.instance()
 
-    player_instance.position = Vector2(2, 2) * 16
+    player_instance.position = Vector2(1, 1) * 16
 
     add_child(player_instance)
     player_instance.set_owner(
