@@ -43,7 +43,7 @@ animations = [ {
 "name": "idle_down",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ) ],
 "loop": false,
 "name": "die",
 "speed": 15.0
@@ -108,7 +108,7 @@ scale = Vector2( 0.9, 0.9 )
 frames = SubResource( 1 )
 animation = "idle_down"
 playing = true
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "frames" ]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 1

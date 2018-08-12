@@ -8,7 +8,6 @@ export (int) var speed
 var screensize
 var velocity = Vector2()
 var alive = true
-var timer
 var spawned_bomb = []
 
 
@@ -51,17 +50,6 @@ func _input(event):
 
 
 func _on_animation_finished():
-    timer = Timer.new()
-    timer.connect("timeout", self, "_on_dead")
-    timer.set_wait_time(0.1)
-
-    add_child(timer)
-    timer.start()
-
-
-func _on_dead():
-    timer.queue_free()
-
     if alive:
         return
 
