@@ -17,14 +17,17 @@ Simple Bomberman implementation using Godot game engine
 * Level generation
 * Bomb
 * Limitation on bomb placement
+* Power-UPS
 
 ## Planned features
 
 * Main menu
 * 4 players (network)
-* Power-UPS
 * Sound
 * Game over
+* Sickness
+* Kick
+* Punch
 
 ## Fix to do on Godot engine
 * `core/resource.cpp:78 - Condition ' exists ' is true.` Prevent tool script to be hot-reloaded when external editor is used.
