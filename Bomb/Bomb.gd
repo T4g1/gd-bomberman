@@ -3,7 +3,6 @@ var Splosion = load("res://Splosion/Splosion.tscn")
 
 
 var PLAYER_LAYER_BIT = 2
-var BASE_POWER = 2
 
 # Only the Wll and other splosion should be checked
 var SPLOSION_MASK = 1 + 16 + 32
@@ -15,9 +14,9 @@ var V = 3
 var V_END = 4
 
 # How many tiles will the explosion span accross
-var power
-var timer
 var chrono = 5
+var power = 2
+var timer
 
 # List self created explosions
 var l_splosion = []
@@ -26,7 +25,6 @@ var l_splosion = []
 func _ready():
     set_collision_mask_bit(PLAYER_LAYER_BIT, 0)
 
-    power = BASE_POWER
     timer = Timer.new()
     timer.connect("timeout", self, "_on_explode")
     timer.set_wait_time(chrono)

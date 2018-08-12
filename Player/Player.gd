@@ -135,7 +135,7 @@ func power_up(bonus):
         "power":
             power += 1
         "speed":
-            speed += 15
+            speed += 35
         "bomb":
             max_bomb_count += 1
         "kick":

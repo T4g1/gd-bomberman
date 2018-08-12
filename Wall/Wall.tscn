@@ -12,14 +12,14 @@ extents = Vector2( 8, 8 )
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [  ],
-"loop": true,
-"name": "explode",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "wall",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "explode",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
@@ -43,6 +43,7 @@ physics_material_override = null
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Pickable" ]
 destroyable = false
+power_up_chance = 35
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

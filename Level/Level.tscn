@@ -1,15 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://Level/Level.gd" type="Script" id=1]
-[ext_resource path="res://PowerUp/PowerUp.tscn" type="PackedScene" id=2]
 
 [node name="Level" type="Node"]
 script = ExtResource( 1 )
 width = 30
 height = 30
-free_space = 90
-enemy_rate = 0
-
-[node name="PowerUp" parent="." instance=ExtResource( 2 )]
-position = Vector2( 25.5275, 43.5728 )
+free_space = 30
+enemy_rate = 25
 

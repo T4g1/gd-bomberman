@@ -1,54 +1,54 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://PowerUp/PowerUp.gd" type="Script" id=1]
-[ext_resource path="res://PowerUp/sick/0-sick.png" type="Texture" id=2]
-[ext_resource path="res://PowerUp/sick/1-sick.png" type="Texture" id=3]
-[ext_resource path="res://PowerUp/bomb/0-bomb.png" type="Texture" id=4]
-[ext_resource path="res://PowerUp/bomb/1-bomb.png" type="Texture" id=5]
-[ext_resource path="res://PowerUp/kick/0-kick.png" type="Texture" id=6]
-[ext_resource path="res://PowerUp/kick/1-kick.png" type="Texture" id=7]
-[ext_resource path="res://PowerUp/punch/0-punch.png" type="Texture" id=8]
-[ext_resource path="res://PowerUp/punch/1-punch.png" type="Texture" id=9]
-[ext_resource path="res://PowerUp/power/0-power.png" type="Texture" id=10]
-[ext_resource path="res://PowerUp/power/1-power.png" type="Texture" id=11]
-[ext_resource path="res://PowerUp/speed/0-speed.png" type="Texture" id=12]
-[ext_resource path="res://PowerUp/speed/1-speed.png" type="Texture" id=13]
+[ext_resource path="res://PowerUp/speed/0-speed.png" type="Texture" id=2]
+[ext_resource path="res://PowerUp/speed/1-speed.png" type="Texture" id=3]
+[ext_resource path="res://PowerUp/sick/0-sick.png" type="Texture" id=4]
+[ext_resource path="res://PowerUp/sick/1-sick.png" type="Texture" id=5]
+[ext_resource path="res://PowerUp/bomb/0-bomb.png" type="Texture" id=6]
+[ext_resource path="res://PowerUp/bomb/1-bomb.png" type="Texture" id=7]
+[ext_resource path="res://PowerUp/power/0-power.png" type="Texture" id=8]
+[ext_resource path="res://PowerUp/power/1-power.png" type="Texture" id=9]
+[ext_resource path="res://PowerUp/punch/0-punch.png" type="Texture" id=10]
+[ext_resource path="res://PowerUp/punch/1-punch.png" type="Texture" id=11]
+[ext_resource path="res://PowerUp/kick/0-kick.png" type="Texture" id=12]
+[ext_resource path="res://PowerUp/kick/1-kick.png" type="Texture" id=13]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
-"name": "sick",
+"name": "speed",
 "speed": 2.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "bomb",
+"name": "sick",
 "speed": 2.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "kick",
+"name": "bomb",
 "speed": 2.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "punch",
+"name": "power",
 "speed": 2.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": true,
-"name": "power",
+"name": "punch",
 "speed": 2.0
 }, {
 "frames": [ ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
-"name": "speed",
+"name": "kick",
 "speed": 2.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 7.5, 7.5 )
@@ -67,15 +67,15 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Pickable" ]
+bonus_type = "bomb"
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
-animation = "power"
-frame = 1
+frames = SubResource( 1 )
+animation = "bomb"
 playing = true
 _sections_unfolded = [ "frames" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
