@@ -21,8 +21,10 @@ Simple Bomberman implementation using Godot game engine
 ## Planned features
 
 * Main menu
-* 4 players
+* 4 players (network)
 * Power-UPS
+* Sound
+* Game over
 
 ## Fix to do on Godot engine
 * `core/resource.cpp:78 - Condition ' exists ' is true.` Prevent tool script to be hot-reloaded when external editor is used.
