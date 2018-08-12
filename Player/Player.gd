@@ -5,7 +5,8 @@ var Bomb = load("res://Bomb/Bomb.tscn")
 # Moving speed of the player
 export (int) var speed
 
-export (int) var max_bomb_count = 1
+export (int, 1, 500) var max_bomb_count = 1
+export (int, 1, 500) var power = 1
 
 var screensize
 var velocity = Vector2()
@@ -69,6 +70,8 @@ func die():
     sprite.animation = "die"
     sprite.play()
 
+    velocity = Vector2(0, 0)
+
     alive = false
 
 
@@ -119,8 +122,27 @@ func spawn_bomb():
     var bomb = Bomb.instance()
 
     bomb.position = get_level_position() * 16
+    bomb.power = power
 
     var current_scene = get_tree().get_current_scene()
     current_scene.add_child(bomb)
     bomb.set_owner(self)
     bomb.add_to_group("player_bomb")
+
+
+func power_up(bonus):
+    match bonus:
+        "power":
+            power += 1
+        "speed":
+            speed += 15
+        "bomb":
+            max_bomb_count += 1
+        "kick":
+            print("Not implemented yet")
+        "punch":
+            print("Not implemented yet")
+        "sick":
+            print("Not implemented yet")
+        _:
+            print("Wrong power up type: ", bonus)

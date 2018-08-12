@@ -40,6 +40,14 @@ func _on_animation_finished():
     queue_free()
 
 
+func _on_area_entered(area):
+    deal_damage(area)
+
+
 func _on_body_entered(body):
-    if body.is_in_group("Destroyable"):
-        body.destroy(self)
+    deal_damage(body)
+
+
+func deal_damage(node):
+    if node.is_in_group("Destroyable"):
+        node.destroy(self)
