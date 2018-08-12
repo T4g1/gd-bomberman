@@ -5,10 +5,11 @@ var Bomb = load("res://Bomb/Bomb.tscn")
 # Moving speed of the player
 export (int) var speed
 
+export (int) var max_bomb_count = 1
+
 var screensize
 var velocity = Vector2()
 var alive = true
-var spawned_bomb = []
 
 
 func _ready():
@@ -111,10 +112,15 @@ func get_level_position():
 
 
 func spawn_bomb():
+    var bomb_count = get_tree().get_nodes_in_group("player_bomb").size()
+    if bomb_count >= max_bomb_count:
+        return
+
     var bomb = Bomb.instance()
 
     bomb.position = get_level_position() * 16
 
     var current_scene = get_tree().get_current_scene()
     current_scene.add_child(bomb)
-    bomb.set_owner(current_scene)
+    bomb.set_owner(self)
+    bomb.add_to_group("player_bomb")
