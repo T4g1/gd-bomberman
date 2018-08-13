@@ -5,16 +5,16 @@ extends Area2D
 var L_BONUS_TYPE = [
     "bomb",
     "power",
-    #"sick",
-    #"kick",
+    "sick",
+    "kick",
     #"punch",
     "speed"
 ]
 var L_PROBABILITY = [
     50,
     50,
-    #10,
-    #25,
+    10,
+    25,
     #25,
     35
 ]

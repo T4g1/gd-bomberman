@@ -17,20 +17,20 @@ animations = [ {
 "name": "wall",
 "speed": 5.0
 }, {
-"frames": [  ],
-"loop": true,
-"name": "explode",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "block",
 "speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "explode",
+"speed": 5.0
 } ]
 
 [node name="Wall" type="StaticBody2D" groups=[
-"Wall",
 "Destroyable",
+"Wall",
 ]]
 input_pickable = false
 collision_layer = 1
@@ -43,7 +43,7 @@ physics_material_override = null
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Pickable" ]
 destroyable = false
-power_up_chance = 35
+power_up_chance = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

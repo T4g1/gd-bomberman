@@ -18,6 +18,8 @@ Simple Bomberman implementation using Godot game engine
 * Bomb
 * Limitation on bomb placement
 * Power-UPS
+* Sickness
+* Kick
 
 ## Planned features
 
@@ -25,21 +27,6 @@ Simple Bomberman implementation using Godot game engine
 * 4 players (network)
 * Sound
 * Game over
-* Sickness
-* Kick
 * Punch
-
-## Fix to do on Godot engine
-* `core/resource.cpp:78 - Condition ' exists ' is true.` Prevent tool script to be hot-reloaded when external editor is used.
-* Workaround: Relaucnh godot
-* Level: Criticaly frustrating
-
-### TODO
-- Clone Godot engine
-- Read README, Contributing
-- Build
-- Debug
-- Fix
-- Test
-- PR
-
+* Blink on sickness
+* Round bomb position to nearest cell on collision ?

@@ -1,8 +1,8 @@
-extends RigidBody2D
+extends KinematicBody2D
 var Splosion = load("res://Splosion/Splosion.tscn")
 
 
-var PLAYER_LAYER_BIT = 2
+var PLAYER_LAYER_BIT = 1
 
 # Only the Wll and other splosion should be checked
 var SPLOSION_MASK = 1 + 16 + 32
@@ -14,23 +14,31 @@ var V = 3
 var V_END = 4
 
 # How many tiles will the explosion span accross
-var chrono = 5
-var power = 2
+export (int, 1, 5000) var chrono = 5
+var power
 var timer
+
+export (int, 1, 5000) var speed = 150
 
 # List self created explosions
 var l_splosion = []
 
+var velocity = Vector2(0, 0)
+
 
 func _ready():
-    set_collision_mask_bit(PLAYER_LAYER_BIT, 0)
-
     timer = Timer.new()
     timer.connect("timeout", self, "_on_explode")
     timer.set_wait_time(chrono)
 
     add_child(timer)
     timer.start()
+
+
+func _physics_process(delta):
+    var movement_left = move_and_slide(velocity)
+    if get_slide_count():
+        velocity = Vector2(0, 0)
 
 
 func add_splosion(position, direction, is_end):
@@ -114,8 +122,15 @@ func _on_explode():
 
 func _on_body_exited(body):
     if body.is_in_group("Player"):
-        set_collision_mask_bit(PLAYER_LAYER_BIT, 1)
+        $CollisionShape2D.disabled = false
 
 
 func destroy(destroyer):
     _on_explode()
+
+
+func kick(direction):
+    if velocity.x != 0 or velocity.y != 0:
+        return
+
+    velocity = direction * -speed

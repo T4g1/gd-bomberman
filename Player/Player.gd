@@ -3,14 +3,27 @@ var Bomb = load("res://Bomb/Bomb.tscn")
 
 
 # Moving speed of the player
-export (int) var speed
+export (int, 1, 5000) var speed = 75
 
 export (int, 1, 500) var max_bomb_count = 1
-export (int, 1, 500) var power = 1
+export (int, 1, 500) var power = 2
+
+enum SICKNESS {
+    NONE,
+    INVERSED,
+    SLOW,
+    WEAK,
+    SPAM
+}
 
 var screensize
 var velocity = Vector2()
 var alive = true
+var sickness = SICKNESS.NONE
+
+export (int, 1, 500) var slow_speed = 40
+
+export (bool) var can_kick = false
 
 
 func _ready():
@@ -43,9 +56,15 @@ func _input(event):
     if Input.is_action_pressed("ui_up"):
         velocity.y -= 1
 
-    velocity = velocity.normalized() * speed
+    if sickness == SICKNESS.SLOW:
+        velocity = velocity.normalized() * slow_speed
+    else:
+        velocity = velocity.normalized() * speed
 
-    if event.is_action_pressed("ui_action"):
+    if sickness == SICKNESS.INVERSED:
+        velocity *= -1
+
+    if event.is_action_pressed("ui_action") or sickness == SICKNESS.SPAM:
         spawn_bomb()
 
 
@@ -59,6 +78,27 @@ func _on_animation_finished():
 func collide(collider):
     if collider.is_in_group("Enemy"):
         die()
+    elif collider.is_in_group("Bomb"):
+        # Kicking direction
+        var delta = Vector2(
+            position.x - collider.position.x,
+            position.y - collider.position.y
+        )
+
+        var direction
+
+        if delta.abs().x > 8:
+            if delta.x <= 0:
+                direction = Vector2(-1, 0)
+            else:
+                direction = Vector2(1, 0)
+        else:
+            if delta.y <= 0:
+                direction = Vector2(0, -1)
+            else:
+                direction = Vector2(0, 1)
+
+        collider.kick(direction)
 
 
 func destroy(destroyer):
@@ -122,7 +162,11 @@ func spawn_bomb():
     var bomb = Bomb.instance()
 
     bomb.position = get_level_position() * 16
-    bomb.power = power
+
+    if sickness == SICKNESS.WEAK:
+        bomb.power = 1
+    else:
+        bomb.power = power
 
     var current_scene = get_tree().get_current_scene()
     current_scene.add_child(bomb)
@@ -131,6 +175,10 @@ func spawn_bomb():
 
 
 func power_up(bonus):
+    if sickness != SICKNESS.NONE and bonus != "sick":
+        sickness = SICKNESS.NONE
+        return
+
     match bonus:
         "power":
             power += 1
@@ -139,10 +187,16 @@ func power_up(bonus):
         "bomb":
             max_bomb_count += 1
         "kick":
-            print("Not implemented yet")
+            can_kick = true
         "punch":
             print("Not implemented yet")
         "sick":
-            print("Not implemented yet")
+            var l_sickness = [
+                SICKNESS.INVERSED,
+                SICKNESS.SLOW,
+                SICKNESS.WEAK,
+                SICKNESS.SPAM
+            ]
+            sickness = l_sickness[randi() % l_sickness.size()]
         _:
             print("Wrong power up type: ", bonus)

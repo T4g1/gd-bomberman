@@ -1,87 +1,87 @@
 [gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Player/left/0.png" type="Texture" id=2]
-[ext_resource path="res://Player/left/1.png" type="Texture" id=3]
-[ext_resource path="res://Player/left/2.png" type="Texture" id=4]
-[ext_resource path="res://Player/left/3.png" type="Texture" id=5]
-[ext_resource path="res://Player/left/4.png" type="Texture" id=6]
-[ext_resource path="res://Player/right/0.png" type="Texture" id=7]
-[ext_resource path="res://Player/right/1.png" type="Texture" id=8]
-[ext_resource path="res://Player/right/2.png" type="Texture" id=9]
-[ext_resource path="res://Player/right/3.png" type="Texture" id=10]
-[ext_resource path="res://Player/right/4.png" type="Texture" id=11]
-[ext_resource path="res://Player/up/0.png" type="Texture" id=12]
-[ext_resource path="res://Player/up/1.png" type="Texture" id=13]
-[ext_resource path="res://Player/up/3.png" type="Texture" id=14]
-[ext_resource path="res://Player/up/4.png" type="Texture" id=15]
-[ext_resource path="res://Player/down/2.png" type="Texture" id=16]
-[ext_resource path="res://Player/down/0.png" type="Texture" id=17]
-[ext_resource path="res://Player/down/1.png" type="Texture" id=18]
-[ext_resource path="res://Player/down/3.png" type="Texture" id=19]
-[ext_resource path="res://Player/down/4.png" type="Texture" id=20]
-[ext_resource path="res://Player/win/0.png" type="Texture" id=21]
-[ext_resource path="res://Player/die/0.png" type="Texture" id=22]
-[ext_resource path="res://Player/die/1.png" type="Texture" id=23]
-[ext_resource path="res://Player/die/2.png" type="Texture" id=24]
-[ext_resource path="res://Player/die/3.png" type="Texture" id=25]
-[ext_resource path="res://Player/die/4.png" type="Texture" id=26]
-[ext_resource path="res://Player/die/5.png" type="Texture" id=27]
-[ext_resource path="res://Player/die/6.png" type="Texture" id=28]
-[ext_resource path="res://Player/up/2.png" type="Texture" id=29]
+[ext_resource path="res://Player/up/2.png" type="Texture" id=2]
+[ext_resource path="res://Player/die/0.png" type="Texture" id=3]
+[ext_resource path="res://Player/die/1.png" type="Texture" id=4]
+[ext_resource path="res://Player/die/2.png" type="Texture" id=5]
+[ext_resource path="res://Player/die/3.png" type="Texture" id=6]
+[ext_resource path="res://Player/die/4.png" type="Texture" id=7]
+[ext_resource path="res://Player/die/5.png" type="Texture" id=8]
+[ext_resource path="res://Player/die/6.png" type="Texture" id=9]
+[ext_resource path="res://Player/left/2.png" type="Texture" id=10]
+[ext_resource path="res://Player/down/2.png" type="Texture" id=11]
+[ext_resource path="res://Player/down/0.png" type="Texture" id=12]
+[ext_resource path="res://Player/down/1.png" type="Texture" id=13]
+[ext_resource path="res://Player/down/3.png" type="Texture" id=14]
+[ext_resource path="res://Player/down/4.png" type="Texture" id=15]
+[ext_resource path="res://Player/right/2.png" type="Texture" id=16]
+[ext_resource path="res://Player/win/0.png" type="Texture" id=17]
+[ext_resource path="res://Player/right/0.png" type="Texture" id=18]
+[ext_resource path="res://Player/right/1.png" type="Texture" id=19]
+[ext_resource path="res://Player/right/3.png" type="Texture" id=20]
+[ext_resource path="res://Player/right/4.png" type="Texture" id=21]
+[ext_resource path="res://Player/left/0.png" type="Texture" id=22]
+[ext_resource path="res://Player/left/1.png" type="Texture" id=23]
+[ext_resource path="res://Player/left/3.png" type="Texture" id=24]
+[ext_resource path="res://Player/left/4.png" type="Texture" id=25]
+[ext_resource path="res://Player/up/0.png" type="Texture" id=26]
+[ext_resource path="res://Player/up/1.png" type="Texture" id=27]
+[ext_resource path="res://Player/up/3.png" type="Texture" id=28]
+[ext_resource path="res://Player/up/4.png" type="Texture" id=29]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "left",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "right",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "up",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 16 ) ],
-"loop": true,
-"name": "idle_down",
+"name": "idle_up",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "idle_right",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "idle_left",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
-"loop": true,
-"name": "down",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 21 ) ],
-"loop": true,
-"name": "win",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 28 ), ExtResource( 28 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ) ],
 "loop": false,
 "name": "die",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 29 ) ],
+"frames": [ ExtResource( 10 ) ],
 "loop": true,
-"name": "idle_up",
+"name": "idle_left",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "idle_down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "down",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": true,
+"name": "idle_right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "win",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 16 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "right",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 10 ), ExtResource( 24 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "left",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ) ],
+"loop": true,
+"name": "up",
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -90,12 +90,12 @@ custom_solver_bias = 0.0
 extents = Vector2( 6, 6 )
 
 [node name="Player" type="KinematicBody2D" groups=[
-"Player",
 "Destroyable",
+"Player",
 ]]
 input_pickable = false
 collision_layer = 2
-collision_mask = 47
+collision_mask = 63
 collision/safe_margin = 0.08
 motion/sync_to_physics = false
 script = ExtResource( 1 )
@@ -103,6 +103,8 @@ _sections_unfolded = [ "Collision", "Motion", "Transform", "Z Index", "frames" ]
 speed = 75
 max_bomb_count = 1
 power = 2
+slow_speed = 40
+can_kick = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -8.5 )
