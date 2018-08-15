@@ -72,7 +72,7 @@ func _on_animation_finished():
     if alive:
         return
 
-    queue_free()
+    get_tree().change_scene("res://UI/MainMenu.tscn")
 
 
 func collide(collider):

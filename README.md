@@ -20,10 +20,10 @@ Simple Bomberman implementation using Godot game engine
 * Power-UPS
 * Sickness
 * Kick
+* Main menu
 
 ## Planned features
 
-* Main menu
 * 4 players (network)
 * Sound
 * Game over

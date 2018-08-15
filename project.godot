@@ -13,13 +13,12 @@ _global_script_classes=[  ]
 [application]
 
 config/name="Bomberman"
-run/main_scene="res://Level/Level.tscn"
+run/main_scene="res://UI/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [display]
 
-window/size/width=300
-window/size/height=300
+window/size/width=800
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 

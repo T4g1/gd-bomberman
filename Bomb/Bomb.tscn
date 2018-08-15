@@ -43,12 +43,14 @@ collision/safe_margin = 0.08
 motion/sync_to_physics = false
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Material", "Pickable", "Transform" ]
+chrono = 5
+speed = 150
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -5 )
 frames = SubResource( 1 )
 animation = "idle_small"
-frame = 3
+frame = 1
 playing = true
 _sections_unfolded = [ "Transform", "frames" ]
 
