@@ -19,6 +19,7 @@ enum SICKNESS {
 var screensize
 var velocity = Vector2()
 var alive = true
+var controlable = true setget set_controlable
 var sickness = SICKNESS.NONE
 
 export (int, 1, 500) var slow_speed = 40
@@ -35,6 +36,9 @@ func _process(delta):
 
 
 func _physics_process(delta):
+    if velocity.length() == 0 or !alive or !controlable:
+        return
+
     var movement_left = move_and_slide(velocity)
     for i in range(get_slide_count()):
         var collider = get_slide_collision(i).collider
@@ -43,7 +47,7 @@ func _physics_process(delta):
 
 
 func _input(event):
-    if !alive:
+    if !controlable or !alive:
         return
 
     velocity = Vector2()
@@ -72,7 +76,16 @@ func _on_animation_finished():
     if alive:
         return
 
-    get_tree().change_scene("res://UI/MainMenu.tscn")
+    var current_scene = get_tree().get_current_scene()
+    current_scene.game_over()
+
+    queue_free()
+
+
+func set_controlable(value):
+    controlable = value
+
+    $AnimatedSprite.stop()
 
 
 func collide(collider):
@@ -116,7 +129,7 @@ func die():
 
 
 func animate():
-    if !has_node("AnimatedSprite") or !alive:
+    if !has_node("AnimatedSprite") or !alive or !controlable:
         return
 
     # animation

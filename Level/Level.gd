@@ -2,6 +2,7 @@ extends Node
 var Wall = load("res://Wall/Wall.tscn")
 var Player = load("res://Player/Player.tscn")
 var Enemy = load("res://Enemy/Enemy.tscn")
+var GameOver = load("res://UI/GameOver.tscn")
 
 
 # Level size
@@ -14,6 +15,23 @@ export (int, 0, 100) var enemy_rate = 50    # Amount of enemy in percentage
 
 func _ready():
     generate_level(false)
+
+
+func _process(delta):
+    var l_enemy = get_tree().get_nodes_in_group("Enemy")
+    if l_enemy.size() <= 0:
+        game_over()
+
+
+func game_over():
+    if $GameOver:
+        return
+
+    $Player.controlable = false
+
+    $Camera2D.make_current()
+
+    add_child(GameOver.instance())
 
 
 func clear_level():

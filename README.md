@@ -21,12 +21,12 @@ Simple Bomberman implementation using Godot game engine
 * Sickness
 * Kick
 * Main menu
+* Game over
 
 ## Planned features
 
 * 4 players (network)
 * Sound
-* Game over
 * Punch
 * Blink on sickness
 * Round bomb position to nearest cell on collision ?
