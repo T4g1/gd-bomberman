@@ -78,7 +78,7 @@ func _on_animation_finished():
 func collide(collider):
     if collider.is_in_group("Enemy"):
         die()
-    elif collider.is_in_group("Bomb"):
+    elif collider.is_in_group("Bomb") and can_kick:
         # Kicking direction
         var delta = Vector2(
             position.x - collider.position.x,

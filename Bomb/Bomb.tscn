@@ -42,7 +42,7 @@ collision_mask = 63
 collision/safe_margin = 0.08
 motion/sync_to_physics = false
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Material", "Pickable", "Transform" ]
+_sections_unfolded = [ "Collision", "Material", "Motion", "Pickable", "Transform" ]
 chrono = 5
 speed = 150
 
