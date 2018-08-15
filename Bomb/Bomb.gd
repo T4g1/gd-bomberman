@@ -36,6 +36,9 @@ func _ready():
 
 
 func _physics_process(delta):
+    if velocity.length() == 0:
+        return
+
     var movement_left = move_and_slide(velocity)
     if get_slide_count():
         velocity = Vector2(0, 0)
