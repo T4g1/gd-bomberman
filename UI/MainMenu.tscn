@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://UI/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://UI/img/title.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://UI/img/quit.png" type="Texture" id=7]
 [ext_resource path="res://UI/img/quit_pressed.png" type="Texture" id=8]
 [ext_resource path="res://UI/img/quit_hover.png" type="Texture" id=9]
+[ext_resource path="res://sound/menu.wav" type="AudioStream" id=10]
 
 [sub_resource type="Theme" id=1]
 
@@ -226,6 +227,16 @@ texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
 texture_hover = ExtResource( 9 )
 _sections_unfolded = [ "Textures" ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+stream_paused = false
+mix_target = 0
+bus = "Master"
+_sections_unfolded = [ "stream" ]
 
 [connection signal="pressed" from="VBoxContainer/CenterContainer2/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer3/quit" to="." method="_on_quit_pressed"]

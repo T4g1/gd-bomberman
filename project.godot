@@ -13,7 +13,7 @@ _global_script_classes=[  ]
 [application]
 
 config/name="Bomberman"
-run/main_scene="res://Level/Level.tscn"
+run/main_scene="res://UI/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [display]

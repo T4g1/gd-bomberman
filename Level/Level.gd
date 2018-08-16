@@ -31,6 +31,8 @@ func game_over():
 
     $Camera2D.make_current()
 
+    $AudioStreamPlayer.stop()
+
     add_child(GameOver.instance())
 
 
